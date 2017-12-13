@@ -14,7 +14,7 @@ gulp.task('styles', function() {
     'Firefox ESR',
     'Opera 12.1'
   ];
-  return gulp.src('src/**/*.less')
+  return gulp.src('app/**/*.less')
     .pipe($.less({
       paths: ['bower_components']
     })
@@ -31,20 +31,16 @@ gulp.task('styles', function() {
 
 gulp.task('views', function(){
   return gulp.src([
-      '!src/views/layout.jade',
-      'src/views/*.jade'
-    ])
-    .pipe($.jade({
-      pretty: true
-    }))
-    .on('error', $.util.log)
+      './index.html',
+      './app/**/*.html'
+    ])    
     .pipe(gulp.dest('build'))
     .pipe(browserSync.reload({stream: true}));
 });
 
 
 gulp.task('images', function() {
-  return gulp.src('src/images/**/*')
+  return gulp.src('app/images/**/*')
     .pipe($.imagemin({
       svgoPlugins: [{
         convertPathData: false
@@ -64,9 +60,9 @@ gulp.task('browser-sync', function() {
 
 
 gulp.task('watch', ['build'], function() {
-  gulp.watch('src/**/*.less', ['styles']);
-  gulp.watch('src/images/**/*', ['images']);
-  gulp.watch('src/**/*.jade', ['views']);
+  gulp.watch('app/**/*.less', ['styles']);
+  gulp.watch('app/images/**/*', ['images']);
+  gulp.watch(['./app/**/*.html'], ['views']);
 
   gulp.start('browser-sync');
 });

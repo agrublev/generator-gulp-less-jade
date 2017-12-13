@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>52project</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <link rel="stylesheet" href="css/main.css">
+    </head>
+    <body>
+        <p>Hello world! This is a 52project.</p>
+        <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="../bower_components/firebase/firebase.js"></script>
+        <script src="../bower_components/firebase/firebase-firestore.js"></script>
+        <script>
+        	// Initialize Firebase
+        	var config = {
+            apiKey: "<%= apiKey %>",
+        		authDomain: "<%= authDomain %>",
+        		databaseURL: "<%= databaseURL %>",
+        		projectId: "<%= projectId %>",
+        		storageBucket: "<%= storageBucket %>",
+        		messagingSenderId: "<%= messagingSenderId %>"
+        	};
+        	firebase.initializeApp(config);
+        	// Initialize Cloud Firestore through Firebase
+        	var db = firebase.firestore();
+        </script>
+        <script src="js/app.js"></script>
+    </body>
+</html>
